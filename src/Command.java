@@ -38,7 +38,7 @@ public class Command {
 		System.out.println("   help");
 		System.out.println(" > ruft die Hilfe auf");
 		System.out.println("");
-		System.out.println("2) Befehler mit Parameter");
+		System.out.println("2) Befehle mit Parameter");
 		System.out.println("");
 		System.out.println("   less (DATEI)");
 		System.out.println(" > zeigt die Datei mit dem Namen (DATEI) an, sofern sie vorhanden ist");
@@ -50,9 +50,6 @@ public class Command {
 		System.out.println("   ssh (NUTZER)@(ADRESSE)");
 		System.out.println(" > meldet den Computer als Nutzer mit dem Namen (NUTZER) an den Computer/Server");
 		System.out.println("   mit der Adresse (ADRESSE) an");
-		System.out.println("");
-		System.out.println("   lpr (DATEI)");
-		System.out.println(" > druckt die Textdatei mit dem Namen (DATEI) aus");
 		System.out.println("");
 	}
 	
@@ -95,33 +92,16 @@ public class Command {
 	private void ssh(String parameter){
 		Scanner scanner = new Scanner(System.in);
 		
-		if (parameter.equals("admin@194.98.26.222") || parameter.equals("guest@194.98.26.222")){
-			if (parameter.startsWith("admin")){
-				System.out.print("Passwort ");
-				String pass = scanner.nextLine();
-				if (hashvalue(pass) == hashvalue("Orangenbaum")){
-					user = new User("admin");
-					userstack.add(user);
-				} else
-					System.out.println("Permission denied, please try again.");
-			} else if (parameter.startsWith("guest")){
-				user = new User("guest");
+		if (parameter.equals("maja@mailhost")){
+			System.out.print("Passwort: ");
+			String pass = scanner.nextLine();
+			if (hashvalue(pass) == hashvalue("password")){
+				user = new User("maja");
 				userstack.add(user);
-			}
+			} else
+			System.out.println("Permission denied, please try again.");
 		} else
 			System.out.println("ssh: Could not resolve hostname " + parameter + ": Name or service not known");
-	}
-	
-	private void lpr(String parameter){
-		if (user.getCurrentDir().containsFile(parameter)){
-			if (user.getName().equals("admin")){
-				if (parameter.equals("zuender")){
-					System.out.println("Der Code ist 98432");
-				}
-			} else
-				System.out.println("lpr: could not find printer");
-		} else
-			System.out.println(parameter + " : No such file or directory");
 	}
 	
 	private void complexRun(StringTokenizer commandTokenizer){
@@ -170,9 +150,6 @@ public class Command {
 		} else if (instruction.equals("ssh")){
 			ssh(parameter);
 			errorcounter = 0;
-		} else if (instruction.equals("lpr")){
-			lpr(parameter);
-			errorcounter = 0;
 		} else {
 			System.out.println("read man "+ instruction + " to get more information");
 			errorcounter++;
@@ -199,7 +176,7 @@ public class Command {
 		StringTokenizer tokenizer = new StringTokenizer(command);
 		if (tokenizer.countTokens() > 1)
 			complexRun(tokenizer);
-		else if (tokenizer.countTokens() == 1)	
+		else if (tokenizer.countTokens() == 1)
 			simpleRun(command);
 		if (errorcounter >= 5){
 			System.out.println("");

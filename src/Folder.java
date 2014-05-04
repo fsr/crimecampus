@@ -61,7 +61,7 @@ public class Folder {
 		for (String name : containedFolders.keySet())
 			System.out.println("[ORDNER]  " + name);
 		for (String name : containedFiles.keySet())
-			System.out.println("[DATEI] " + name);
+			System.out.println("[DATEI]   " + name);
 	}
 	
 	public Folder getFolder(String name){

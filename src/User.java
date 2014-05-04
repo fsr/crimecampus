@@ -17,22 +17,19 @@ public class User {
 		if (name.equals("anonymous")){
 			computer = "pc";
 			homeDir.addFolder("Dokumente");
-			homeDir.addFolder("Postfach");
-			homeDir.getFolder("Postfach").addFile("mail1");
-			homeDir.getFolder("Postfach").getFile("mail1").appendContent(content.getContent("mail1"));
 			homeDir.getFolder("Dokumente").addFile("version");
 			homeDir.getFolder("Dokumente").getFile("version").appendContent(content.getContent("version"));
-		} else if (name.equals("guest")){
-			computer = "194.98.26.222";
-			homeDir.addFolder("Webserver");
-			homeDir.getFolder("Webserver").addFile("passwd");
-			homeDir.getFolder("Webserver").getFile("passwd").appendContent(content.getContent("passwd"));
-		} else if (name.equals("admin")){
-			computer = "194.98.26.222";
-			homeDir.addFolder("Datenbank");
-			homeDir.addFolder("Dokumente");
-			homeDir.getFolder("Datenbank").addFile("zuender");
-			homeDir.getFolder("Datenbank").getFile("zuender").appendContent(content.getContent("zuender"));			
+			homeDir.getFolder("Dokumente").addFile("passwoerter");
+			homeDir.getFolder("Dokumente").getFile("passwoerter").appendContent(content.getContent("pwlist"));
+		} else if (name.equals("maja")){
+			computer = "mailhost";
+			homeDir.addFolder("Mails");
+			homeDir.getFolder("Mails").addFile("mail1");
+			homeDir.getFolder("Mails").getFile("mail1").appendContent(content.getContent("mail1"));
+			homeDir.getFolder("Mails").addFile("mail2");
+			homeDir.getFolder("Mails").getFile("mail2").appendContent(content.getContent("mail2"));
+			homeDir.getFolder("Mails").addFile("mail3");
+			homeDir.getFolder("Mails").getFile("mail3").appendContent(content.getContent("mail3"));
 		}
 	}
 	
@@ -56,7 +53,7 @@ public class User {
 	}
 	
 	public String getPrefix(){
-		return this + "@" + computer + ":~" + getAbsolutAdress(currentDir) + "$ ";
+		return this + "@" + computer + ":~" + getAbsolutAdress(currentDir) + "> ";
 	}
 	
 	public void setCurrentDir(Folder folder){

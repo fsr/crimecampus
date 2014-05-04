@@ -22,7 +22,7 @@ public class Textfile {
 		return parentFolder;
 	}
 	
-	public void appendContent(List<String> content){	
+	public void appendContent(List<String> content){
 		this.content.addAll(content);
 	}
 	
