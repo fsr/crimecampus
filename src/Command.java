@@ -40,7 +40,7 @@ public class Command {
 		System.out.println("");
 		System.out.println("2) Befehle mit Parameter");
 		System.out.println("");
-		System.out.println("   less (DATEI)");
+		System.out.println("   cat (DATEI)");
 		System.out.println(" > zeigt die Datei mit dem Namen (DATEI) an, sofern sie vorhanden ist");
 		System.out.println("");
 		System.out.println("   cd (ORDNER)");
