@@ -92,7 +92,7 @@ public class Command {
 	private void ssh(String parameter){
 		Scanner scanner = new Scanner(System.in);
 
-		if (parameter.equals("max@gmail")){
+		if (parameter.equals("max@gmail.com")){
 			System.out.print("Passwort: ");
 			String pass = scanner.nextLine();
 			if (hashvalue(pass) == hashvalue("password")){
