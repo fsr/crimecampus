@@ -4,22 +4,22 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Command {
-	
+
 	private User user;
 	private List<User> userstack;
 	private int errorcounter;
-	
+
 	Command(User user){
 		this.user = user;
 		userstack = new LinkedList<User>();
 		userstack.add(user);
 		errorcounter = 0;
 	}
-	
+
 	private void ls(){
 		user.getCurrentDir().printFolder();
 	}
-	
+
 	private void logout(){
 		int i = userstack.lastIndexOf(user);
 		if (i > 0){
@@ -28,7 +28,7 @@ public class Command {
 		} else
 			System.out.println("bash: logout: Keine Login Shell: Mit exit abmelden.");
 	}
-	
+
 	private void help(){
 		System.out.println("1) einfache Befehle");
 		System.out.println("");
@@ -52,18 +52,18 @@ public class Command {
 		System.out.println("   mit der Adresse (ADRESSE) an");
 		System.out.println("");
 	}
-	
+
 	private void less(String parameter){
 		if (user.getCurrentDir().containsFile(parameter)){
 			user.getCurrentDir().getFile(parameter).printFile();
 		} else
 			System.out.println(parameter + " : No such file or directory");
 	}
-	
+
 	private void hash(String parameter){
 		System.out.println(parameter + " : " + hashvalue(parameter));
 	}
-	
+
 	private void cd(String parameter){
 		if (parameter.equals("..") || parameter.equals("../"))
 			user.setCurrentDir(user.getCurrentDir().getParentFolder());
@@ -76,40 +76,40 @@ public class Command {
 				System.out.println(parameter + " : No such file or directory");
 		}
 	}
-	
+
 	private void mkdir(String parameter){
 		user.getCurrentDir().addFolder(parameter);
 	}
-	
+
 	private void rmdir(String parameter){
 		user.getCurrentDir().removeFolder(parameter);
 	}
-	
+
 	private void rm(String parameter){
 		user.getCurrentDir().removeFile(parameter);
 	}
-	
+
 	private void ssh(String parameter){
 		Scanner scanner = new Scanner(System.in);
-		
-		if (parameter.equals("maja@mailhost")){
+
+		if (parameter.equals("max@gmail")){
 			System.out.print("Passwort: ");
 			String pass = scanner.nextLine();
 			if (hashvalue(pass) == hashvalue("password")){
-				user = new User("maja");
+				user = new User("max");
 				userstack.add(user);
 			} else
 			System.out.println("Permission denied, please try again.");
 		} else
 			System.out.println("ssh: Could not resolve hostname " + parameter + ": Name or service not known");
 	}
-	
+
 	private void complexRun(StringTokenizer commandTokenizer){
 		String instruction = commandTokenizer.nextToken();
 		String parameter = commandTokenizer.nextToken();
 		while (commandTokenizer.hasMoreTokens())
 			parameter += " " + commandTokenizer.nextToken();
-		
+
 		if (instruction.equals("less")){
 			less(parameter);
 			errorcounter = 0;
@@ -171,7 +171,7 @@ public class Command {
 			errorcounter++;
 		}
 	}
-	
+
 	public void run(String command){
 		StringTokenizer tokenizer = new StringTokenizer(command);
 		if (tokenizer.countTokens() > 1)
@@ -186,7 +186,7 @@ public class Command {
 		}
 		System.out.print(user.getPrefix());
 	}
-	
+
 	private int hashvalue(String parameter){
 		int hashvalue = 0;
 		for (int i = 0; i < parameter.length() ; i++)
