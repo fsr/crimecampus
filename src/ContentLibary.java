@@ -75,7 +75,8 @@ public class ContentLibary {
 			content.add("");
 			content.add("PRINCE AZU ZUBBY.");
 		} else if (name.equals("mail3")){
-			content.add("Alles klar, ich kümmere mich da schon drum.");
+			content.add("Alles klar, ich kümmere mich da schon drum. Hab aber heute erstmal noch ne");
+			content.add("Verabredung mit Wilma und so ;)");
 			content.add("");
 			content.add("Willi");
 		} else {}
